@@ -1,11 +1,11 @@
 # Contributing
 
-Thanks for wanting to improve the playbook. This repo is a *discipline*, not a codebase — so
+Thanks for wanting to improve Keel. This repo is a *discipline*, not a codebase — so
 contributions are mostly prose, templates, and evidence. A few rules keep it coherent.
 
 ## This repo eats its own dog food
 
-The playbook's rules apply to the playbook itself:
+Keel's rules apply to Keel itself:
 
 - **Decisions about the kit are recorded in [`docs/decisions.md`](docs/decisions.md).** Before proposing
   a structural change (new file, new format, new rule), check whether it's already been decided — and if

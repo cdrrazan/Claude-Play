@@ -17,7 +17,7 @@ fills with re-litigated decisions, scope creep, and claims nobody verified. That
 
 ## The fix: a reliability layer, not a framework
 
-This kit doesn't generate code and doesn't tell you how to architect your app. It installs a small
+Keel doesn't generate code and doesn't tell you how to architect your app. It installs a small
 discipline that directly counters the three failure modes:
 
 - **Against forgetting** → two committed **ledgers**: what we decided, and what we killed.
@@ -31,7 +31,7 @@ it. That's the whole idea.
 
 You may already use — or be considering — a spec-driven tool like
 [GitHub spec-kit](https://github.com/github/spec-kit) or [AWS Kiro](https://kiro.dev). Those are
-**generative**: they make a *specification* the source of truth and generate the code from it. This kit is
+**generative**: they make a *specification* the source of truth and generate the code from it. Keel is
 **epistemic**: it assumes the code is the source of truth and keeps agents honest about it.
 
 They answer different questions:
@@ -39,7 +39,7 @@ They answer different questions:
 | | Question it answers | Source of truth |
 |---|---|---|
 | **spec-kit / Kiro** | "How do I produce code from intent?" | The spec |
-| **This kit** | "How do I keep a codebase trustworthy after thousands of edits?" | The code |
+| **Keel** | "How do I keep a codebase trustworthy after thousands of edits?" | The code |
 
 So this is **not a competitor** to spec-kit or Kiro — it's the reliability layer that sits *underneath*
 whatever generation workflow you use. Use spec-kit to write the feature; use the ledgers, roles, and gates

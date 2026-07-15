@@ -4,7 +4,7 @@ Two walkthroughs, then how to run this alongside spec-kit or Kiro.
 
 ## Greenfield walkthrough
 
-1. **Clone this kit** (or copy the four kernel files into your new repo).
+1. **Clone Keel** (or copy the four kernel files into your new repo).
 2. **Strip to the kernel** — delete anything you're not using yet. `AGENTS.md`, `CLAUDE.md`,
    `docs/decisions.md`, `docs/falsified.md`. That's the starting line.
 3. **Fill the project map** in `AGENTS.md`: stack, domain terms, how to run tests, the landmines.
@@ -30,16 +30,16 @@ No migration, no rewrite, no big bang. If step 4 doesn't help, you've lost nothi
 
 ## Running alongside spec-kit or Kiro
 
-This kit is a **reliability layer**, not a generation workflow — so it stacks *under* a spec-driven tool
+Keel is a **reliability layer**, not a generation workflow — so it stacks *under* a spec-driven tool
 rather than replacing it:
 
 - Use **[spec-kit](https://github.com/github/spec-kit)** or **[Kiro](https://kiro.dev)** to go from intent
   to code (their `specify → plan → tasks → implement` pipeline, their spec files).
-- Use **this kit** to keep the result honest over time: the ledgers remember what you tried and killed
+- Use **Keel** to keep the result honest over time: the ledgers remember what you tried and killed
   across features; the reviewer/auditor roles vet the generated changes; the gates and evidence rule stop
   confident-but-wrong claims.
 
-Concretely: let spec-kit own `.specify/` and its per-feature spec files; let this kit own `AGENTS.md`,
+Concretely: let spec-kit own `.specify/` and its per-feature spec files; let Keel own `AGENTS.md`,
 `docs/decisions.md`, and `docs/falsified.md`. They don't collide. A spec-kit `constitution.md` and this
 kit's `decisions.md` are complementary — the constitution states principles up front; `decisions.md`
 records the choices you make as you go, and `falsified.md` records what you ruled out. Nothing else offers

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-label="Keel — The AI-Agent Playbook">
+  <rect width="1200" height="360" fill="#10160F"/>
+  <!-- ledger frame -->
+  <line x1="60" y1="46" x2="1140" y2="46" stroke="#2C382E" stroke-width="1.5"/>
+  <line x1="96" y1="46" x2="96" y2="318" stroke="#E06B52" stroke-width="2"/>
+  <!-- hull cross-section motif (right) -->
+  <g opacity="0.9">
+    <path d="M792 104 C 832 300, 1044 300, 1084 104" fill="none" stroke="#54B98B" stroke-width="10" opacity="0.20" stroke-linecap="round"/>
+    <line x1="762" y1="150" x2="1114" y2="150" stroke="#2C382E" stroke-width="1.5"/>
+    <line x1="938" y1="252" x2="938" y2="300" stroke="#54B98B" stroke-width="8" opacity="0.35" stroke-linecap="round"/>
+  </g>
+  <!-- wordmark -->
+  <text x="130" y="212" font-family="Palatino,&#39;Palatino Linotype&#39;,&#39;Book Antiqua&#39;,Georgia,serif" font-size="176" font-weight="700" letter-spacing="8" fill="#DCE4DC">KEEL</text>
+  <!-- keel line + ribs -->
+  <line x1="138" y1="238" x2="560" y2="238" stroke="#54B98B" stroke-width="6" stroke-linecap="round"/>
+  <line x1="196" y1="240" x2="196" y2="262" stroke="#54B98B" stroke-width="3"/><line x1="278" y1="240" x2="278" y2="262" stroke="#54B98B" stroke-width="3"/><line x1="360" y1="240" x2="360" y2="262" stroke="#54B98B" stroke-width="3"/><line x1="442" y1="240" x2="442" y2="262" stroke="#54B98B" stroke-width="3"/><line x1="524" y1="240" x2="524" y2="262" stroke="#54B98B" stroke-width="3"/>
+  <!-- taglines -->
+  <text x="140" y="300" font-family="&#39;SF Mono&#39;,ui-monospace,Menlo,Consolas,monospace" font-size="26" letter-spacing="7" fill="#54B98B">THE AI-AGENT PLAYBOOK</text>
+  <text x="140" y="337" font-family="Palatino,&#39;Palatino Linotype&#39;,&#39;Book Antiqua&#39;,Georgia,serif" font-size="23" font-style="italic" fill="#A7B3A9">Keeps a codebase upright after thousands of agent edits.</text>
+</svg>
