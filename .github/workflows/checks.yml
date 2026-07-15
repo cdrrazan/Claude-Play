@@ -10,7 +10,7 @@ jobs:
     name: Internal link integrity
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Check relative links in Markdown
         run: python3 .github/scripts/check_links.py
 
@@ -18,7 +18,7 @@ jobs:
     name: AGENTS.md stays short
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Enforce the ~200-line budget
         run: |
           lines=$(wc -l < AGENTS.md)
