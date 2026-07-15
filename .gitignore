@@ -1,0 +1,14 @@
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+
+# Python (link-check script has no deps, but keep clones clean)
+__pycache__/
+*.pyc
+
+# Local agent settings that shouldn't be shared
+.claude/settings.local.json

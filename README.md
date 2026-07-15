@@ -74,6 +74,21 @@ ideas. And never let a claim about code stand unless it traces to a fresh read.
 | [7. Applied-AI addendum](docs/guide/07-applied-ai.md) | Deterministic core, evals, experiment tracking |
 | [8. Adoption & interop](docs/guide/08-adoption.md) | Walkthroughs + running alongside spec-kit/Kiro |
 
+## Read it as a web page
+
+The whole guide is also a single, self-contained page at [`docs/site/index.html`](docs/site/index.html) —
+no external dependencies, works from disk or any static host. A [GitHub Pages workflow](.github/workflows/pages.yml)
+publishes it automatically on every push to `main` (one-time setup: repo **Settings → Pages → Source →
+GitHub Actions**).
+
+## Contributing
+
+The kit eats its own dog food: decisions about the kit are recorded in [`docs/decisions.md`](docs/decisions.md),
+proposals carry the burden of proof, and additions need a demonstrated friction they resolve — the kit's
+value is its smallness. Start with [CONTRIBUTING.md](CONTRIBUTING.md); the most valuable thing you can
+send is an [experience report](.github/ISSUE_TEMPLATE/experience-report.md) from actually adopting it.
+CI keeps internal links honest and enforces the ~200-line budget on `AGENTS.md`.
+
 ## License
 
 MIT — see [LICENSE](LICENSE). Original playbook ideas © their author; this structured kit is offered

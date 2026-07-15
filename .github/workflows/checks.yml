@@ -1,0 +1,29 @@
+name: checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  links:
+    name: Internal link integrity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check relative links in Markdown
+        run: python3 .github/scripts/check_links.py
+
+  agents-md-size:
+    name: AGENTS.md stays short
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enforce the ~200-line budget
+        run: |
+          lines=$(wc -l < AGENTS.md)
+          echo "AGENTS.md is $lines lines (budget: 200)"
+          if [ "$lines" -gt 200 ]; then
+            echo "::error file=AGENTS.md::AGENTS.md exceeds 200 lines ($lines). Past ~200 lines, agents start ignoring the tail — cut before you add."
+            exit 1
+          fi
