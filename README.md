@@ -12,11 +12,11 @@ A small set of files and rules you drop into any repo — new or old.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-1E6A48.svg)](LICENSE)
 [![checks](https://github.com/cdrrazan/Keel/actions/workflows/checks.yml/badge.svg)](https://github.com/cdrrazan/Keel/actions/workflows/checks.yml)
-[![Read the guide](https://img.shields.io/badge/read_the-guide-1E6A48.svg)](https://cdrrazan.github.io/Keel/)
+[![Read the guide](https://img.shields.io/badge/read_the-guide-1E6A48.svg)](https://keel.byaru.com/)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-A63D2F.svg)](CONTRIBUTING.md)
 [![AGENTS.md](https://img.shields.io/badge/standard-AGENTS.md-444.svg)](https://agents.md/)
 
-[**Read the guide →**](https://cdrrazan.github.io/Keel/) · [Why](docs/guide/01-why.md) · [Principles](docs/guide/02-principles.md) · [Ledgers](docs/guide/04-ledgers.md) · [Roles](docs/guide/05-roles.md) · [Adoption](docs/guide/08-adoption.md)
+[**Read the guide →**](https://keel.byaru.com/) · [Why](docs/guide/01-why.md) · [Principles](docs/guide/02-principles.md) · [Ledgers](docs/guide/04-ledgers.md) · [Roles](docs/guide/05-roles.md) · [Adoption](docs/guide/08-adoption.md)
 
 </div>
 
@@ -137,7 +137,7 @@ flowchart TD
 
 ## Read the guide
 
-The whole guide is a single self-contained web page — **[cdrrazan.github.io/Keel](https://cdrrazan.github.io/Keel/)** —
+The whole guide is a single self-contained web page — **[keel.byaru.com](https://keel.byaru.com/)** —
 or read it chapter by chapter here:
 
 | Chapter | What it covers |
