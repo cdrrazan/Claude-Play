@@ -1,0 +1,12 @@
+version: 2
+updates:
+  # Keel has no application dependencies — the only moving parts are the
+  # GitHub Actions the workflows pin. Keep those current.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: ci
+    labels:
+      - dependencies

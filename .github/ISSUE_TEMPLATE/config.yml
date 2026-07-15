@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 📖 Read the guide
+    url: https://keel.byaru.com/
+    about: The full playbook, chapter by chapter — check here before filing.
+  - name: 🤝 Contributing guide
+    url: https://github.com/cdrrazan/Keel/blob/main/CONTRIBUTING.md
+    about: How proposals, corrections, and experience reports work.
+  - name: 🔒 Report a security issue
+    url: https://github.com/cdrrazan/Keel/security/policy
+    about: Please report vulnerabilities privately, not as a public issue.

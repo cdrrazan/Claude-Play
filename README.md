@@ -159,6 +159,8 @@ value is its smallness. Start with [CONTRIBUTING.md](CONTRIBUTING.md); the most 
 send is an [experience report](.github/ISSUE_TEMPLATE/experience-report.md) from actually adopting it.
 CI keeps internal links honest and enforces the ~200-line budget on `AGENTS.md`.
 
+Also: [Code of Conduct](CODE_OF_CONDUCT.md) · [Security policy](SECURITY.md) · [Changelog](CHANGELOG.md)
+
 ## License
 
 MIT — see [LICENSE](LICENSE). Original playbook ideas © their author; Keel is offered freely for anyone
