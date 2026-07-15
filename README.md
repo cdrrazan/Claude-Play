@@ -5,7 +5,7 @@
   <img alt="Keel — The AI-Agent Playbook" src="docs/assets/banner-light.svg" width="100%">
 </picture>
 
-<br>
+<br><br>
 
 **Keep a codebase trustworthy after thousands of AI-agent edits.**
 A small set of files and rules you drop into any repo — new or old.
