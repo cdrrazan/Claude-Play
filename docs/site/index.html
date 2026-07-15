@@ -1,0 +1,597 @@
+<title>The AI-Agent Playbook</title>
+<style>
+  :root {
+    --paper: #F2F3EE;
+    --paper-raised: #FAFBF7;
+    --ink: #1B231E;
+    --ink-soft: #4A564E;
+    --ink-faint: #75817A;
+    --green: #1E6A48;
+    --green-soft: #E3EDE6;
+    --red: #A63D2F;
+    --red-soft: #F3E4E0;
+    --rule: #C9D2CA;
+    --rule-faint: #DDE3DC;
+    --margin-rule: #D8A79E;
+    --code-bg: #E9ECE5;
+    --shadow: 0 1px 2px rgba(27,35,30,.06), 0 4px 14px rgba(27,35,30,.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #10160F;
+      --paper-raised: #18201A;
+      --ink: #DCE4DC;
+      --ink-soft: #A7B3A9;
+      --ink-faint: #798579;
+      --green: #54B98B;
+      --green-soft: #1B2E24;
+      --red: #E06B52;
+      --red-soft: #33201B;
+      --rule: #2C382E;
+      --rule-faint: #222C24;
+      --margin-rule: #57332C;
+      --code-bg: #1B241D;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 4px 14px rgba(0,0,0,.25);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #10160F;
+    --paper-raised: #18201A;
+    --ink: #DCE4DC;
+    --ink-soft: #A7B3A9;
+    --ink-faint: #798579;
+    --green: #54B98B;
+    --green-soft: #1B2E24;
+    --red: #E06B52;
+    --red-soft: #33201B;
+    --rule: #2C382E;
+    --rule-faint: #222C24;
+    --margin-rule: #57332C;
+    --code-bg: #1B241D;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 4px 14px rgba(0,0,0,.25);
+  }
+  :root[data-theme="light"] {
+    --paper: #F2F3EE;
+    --paper-raised: #FAFBF7;
+    --ink: #1B231E;
+    --ink-soft: #4A564E;
+    --ink-faint: #75817A;
+    --green: #1E6A48;
+    --green-soft: #E3EDE6;
+    --red: #A63D2F;
+    --red-soft: #F3E4E0;
+    --rule: #C9D2CA;
+    --rule-faint: #DDE3DC;
+    --margin-rule: #D8A79E;
+    --code-bg: #E9ECE5;
+    --shadow: 0 1px 2px rgba(27,35,30,.06), 0 4px 14px rgba(27,35,30,.05);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+
+  .sheet {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 0 1.25rem 6rem;
+  }
+
+  /* — the ledger margin rule — */
+  .entry {
+    position: relative;
+    padding-left: 3.25rem;
+    border-top: 1px solid var(--rule);
+    margin-top: 3.5rem;
+    padding-top: 2.25rem;
+  }
+  .entry::before {
+    content: "";
+    position: absolute;
+    left: 2.1rem; top: 0; bottom: -3.5rem;
+    width: 1px;
+    background: var(--margin-rule);
+  }
+  .entry:last-of-type::before { bottom: 0; }
+  .folio {
+    position: absolute;
+    left: 0; top: 2.45rem;
+    width: 1.6rem;
+    text-align: right;
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .8rem;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+
+  h1, h2, h3 {
+    font-family: "Iowan Old Style", Palatino, "Palatino Linotype", "URW Palladio L", Georgia, serif;
+    text-wrap: balance;
+    margin: 0;
+  }
+  h2 { font-size: 1.75rem; line-height: 1.2; font-weight: 600; margin-bottom: 1rem; }
+  h3 { font-size: 1.15rem; font-weight: 600; margin: 1.75rem 0 .5rem; }
+  p { margin: 0 0 1rem; }
+  a { color: var(--green); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  strong { color: var(--ink); }
+  .lede { font-size: 1.15rem; color: var(--ink-soft); }
+
+  .eyebrow {
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .72rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: .6rem;
+  }
+
+  /* — hero — */
+  header {
+    padding: 4.5rem 0 0;
+  }
+  .masthead {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--ink-faint);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: .75rem;
+    gap: 1rem; flex-wrap: wrap;
+  }
+  h1 {
+    font-size: clamp(2.5rem, 7vw, 4rem);
+    line-height: 1.05;
+    font-weight: 600;
+    letter-spacing: -.015em;
+    margin: 2.5rem 0 1.25rem;
+  }
+  h1 em { font-style: italic; color: var(--green); }
+  .thesis {
+    font-size: 1.3rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 36rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* — hero ledger table — */
+  .ledger-card {
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin: 0 0 1rem;
+  }
+  .ledger-card .bar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: .5rem .9rem;
+    border-bottom: 1px solid var(--rule);
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .72rem; color: var(--ink-faint);
+  }
+  .scroll-x { overflow-x: auto; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .78rem;
+    line-height: 1.5;
+  }
+  th, td {
+    text-align: left;
+    padding: .55rem .9rem;
+    border-top: 1px solid var(--rule-faint);
+    vertical-align: top;
+    white-space: nowrap;
+  }
+  td.wrap, th.wrap { white-space: normal; min-width: 16rem; }
+  th {
+    border-top: none;
+    font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ink-faint); font-weight: 500;
+  }
+  .stamp {
+    display: inline-block;
+    font-size: .62rem; letter-spacing: .12em; text-transform: uppercase;
+    padding: .1rem .45rem;
+    border: 1.5px solid var(--red);
+    color: var(--red);
+    border-radius: 2px;
+    transform: rotate(-2deg);
+    font-weight: 700;
+  }
+  .stamp.ok { border-color: var(--green); color: var(--green); }
+  .caption {
+    font-size: .85rem; color: var(--ink-faint);
+    margin-bottom: 0;
+  }
+
+  /* — table of contents — */
+  nav.toc {
+    margin-top: 3rem;
+    border-top: 1px solid var(--rule);
+    padding-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: .35rem 2rem;
+  }
+  nav.toc a {
+    display: flex; gap: .75rem; align-items: baseline;
+    text-decoration: none; color: var(--ink);
+    padding: .3rem 0;
+    border-bottom: 1px solid var(--rule-faint);
+    font-size: .95rem;
+  }
+  nav.toc a:hover { color: var(--green); }
+  nav.toc .n {
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .72rem; color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* — code / pre — */
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--rule-faint);
+    border-radius: 3px;
+    padding: 1rem 1.1rem;
+    overflow-x: auto;
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .8rem;
+    line-height: 1.6;
+    margin: 1.25rem 0;
+  }
+  code {
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .85em;
+    background: var(--code-bg);
+    padding: .08em .35em;
+    border-radius: 2px;
+  }
+  pre code { background: none; padding: 0; font-size: 1em; }
+  pre .c { color: var(--ink-faint); }
+  pre .g { color: var(--green); font-weight: 600; }
+
+  /* — callouts & quotes — */
+  .rule-quote {
+    border-left: 3px solid var(--green);
+    background: var(--green-soft);
+    padding: .9rem 1.2rem;
+    margin: 1.25rem 0;
+    border-radius: 0 3px 3px 0;
+  }
+  .rule-quote p { margin: 0; }
+  .rule-quote .tag {
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--green); display: block; margin-bottom: .35rem;
+  }
+  .warn { border-left-color: var(--red); background: var(--red-soft); }
+  .warn .tag { color: var(--red); }
+
+  /* — principles list — */
+  ol.principles { margin: 1.25rem 0; padding: 0; counter-reset: p; list-style: none; }
+  ol.principles li {
+    counter-increment: p;
+    display: flex; gap: 1rem;
+    padding: .55rem 0;
+    border-bottom: 1px solid var(--rule-faint);
+    align-items: baseline;
+  }
+  ol.principles li::before {
+    content: counter(p, decimal-leading-zero);
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .72rem; color: var(--green);
+    font-variant-numeric: tabular-nums;
+    flex: 0 0 1.6rem;
+  }
+
+  ul { margin: 0 0 1rem; padding-left: 1.2rem; }
+  li { margin-bottom: .4rem; }
+
+  /* — roles flow — */
+  .flow {
+    display: flex; flex-direction: column; gap: 0;
+    margin: 1.5rem 0;
+  }
+  .flow .step {
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 1rem 1.2rem;
+    box-shadow: var(--shadow);
+  }
+  .flow .step h4 {
+    margin: 0 0 .3rem;
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .78rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--green); font-weight: 600;
+  }
+  .flow .step p { margin: 0; font-size: .95rem; color: var(--ink-soft); }
+  .flow .joint {
+    align-self: center;
+    color: var(--ink-faint);
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .75rem;
+    padding: .35rem 0;
+  }
+  .verdicts { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .6rem; }
+
+  /* — comparison table wrapper — */
+  .compare th, .compare td { white-space: normal; min-width: 9rem; }
+  .compare td:first-child { font-weight: 600; }
+
+  /* — two-track cards — */
+  .tracks {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    gap: 1rem; margin: 1.5rem 0;
+  }
+  .track {
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 1.2rem 1.3rem;
+    box-shadow: var(--shadow);
+  }
+  .track h4 {
+    margin: 0 0 .75rem;
+    font-family: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+    font-size: 1.1rem;
+  }
+  .track ol { padding-left: 1.1rem; margin: 0; font-size: .95rem; color: var(--ink-soft); }
+  .track ol li { margin-bottom: .5rem; }
+
+  footer {
+    margin-top: 5rem;
+    border-top: 1px solid var(--rule);
+    padding-top: 1.5rem;
+    font-size: .9rem;
+    color: var(--ink-faint);
+  }
+  footer p { margin-bottom: .5rem; }
+</style>
+
+<div class="sheet">
+
+<header>
+  <div class="masthead">
+    <span>Ledger of record · est. 2026</span>
+    <span>rules · ledgers · roles · gates</span>
+  </div>
+  <h1>The AI-Agent<br>Playbook</h1>
+  <p class="thesis">AI coding agents are fast, forgetful, and confidently wrong. This is the discipline that keeps a codebase trustworthy after <em>thousands</em> of agent-made changes — a small set of files and rules you drop into any repo, new or old.</p>
+
+  <div class="ledger-card">
+    <div class="bar"><span>docs/falsified.md</span><span>the file no other framework has</span></div>
+    <div class="scroll-x">
+    <table>
+      <tr><th class="wrap">Idea</th><th>Verdict</th><th class="wrap">Why (mechanism + numbers)</th><th>Date</th></tr>
+      <tr><td class="wrap">Cache embeddings in Redis</td><td><span class="stamp">killed</span></td><td class="wrap">Hit rate 4% — inputs near-unique per request; +40ms lookup for no benefit</td><td>2026-07-12</td></tr>
+      <tr><td class="wrap">Retry failed LLM calls 5×</td><td><span class="stamp">killed</span></td><td class="wrap">Failures deterministic (bad schema), not transient — 5× cost, 0% recovery</td><td>2026-07-13</td></tr>
+      <tr><td class="wrap">Retry failed LLM calls 3× <em>with backoff</em></td><td><span class="stamp">killed</span></td><td class="wrap">A tweak of a dead idea is the same idea → see entry above</td><td>2026-07-14</td></tr>
+    </table>
+    </div>
+  </div>
+  <p class="caption">The killed-ideas ledger: every experiment you ruled out, with the mechanism and the numbers — so no agent ever re-runs it.</p>
+
+  <nav class="toc" aria-label="Chapters">
+    <a href="#why"><span class="n">01</span> Why this exists</a>
+    <a href="#principles"><span class="n">02</span> The fifteen principles</a>
+    <a href="#kernel"><span class="n">03</span> The minimal kernel</a>
+    <a href="#ledgers"><span class="n">04</span> The two ledgers</a>
+    <a href="#roles"><span class="n">05</span> The three roles</a>
+    <a href="#gates"><span class="n">06</span> The gates</a>
+    <a href="#applied"><span class="n">07</span> Applied-AI addendum</a>
+    <a href="#adoption"><span class="n">08</span> Adoption &amp; interop</a>
+  </nav>
+</header>
+
+<section class="entry" id="why">
+  <span class="folio">01</span>
+  <div class="eyebrow">The problem</div>
+  <h2>Why this exists</h2>
+  <p class="lede">An agent will make a hundred changes to your repo in an afternoon. Most are fine. Three habits compound into rot.</p>
+  <ul>
+    <li><strong>They forget.</strong> No memory of last week's failed experiment — so they propose it again. And again. Each re-run costs you the review to notice it's a re-run.</li>
+    <li><strong>They over-reach.</strong> Asked to fix one thing, they "helpfully" refactor three others. Every unrequested change is review you didn't budget for and risk you didn't sign up for.</li>
+    <li><strong>They're confidently wrong.</strong> "The tests pass" — without running them. "This handles the edge case" — without reading the code that supposedly handles it.</li>
+  </ul>
+  <p>None of these is fatal once. All are corrosive across thousands of edits. This kit installs a counter-discipline for each: <strong>ledgers</strong> against forgetting, <strong>scoped roles and gates</strong> against over-reach, an <strong>evidence rule and a blind adversarial reviewer</strong> against confident wrongness.</p>
+
+  <h3>Where it sits next to spec-kit and Kiro</h3>
+  <p>Spec-driven tools like <a href="https://github.com/github/spec-kit">GitHub spec-kit</a> and <a href="https://kiro.dev">AWS Kiro</a> are <em>generative</em>: the spec is the source of truth and code is generated from it. This playbook is <em>epistemic</em>: the code is the source of truth, and it governs how agents are allowed to make claims about it.</p>
+  <div class="ledger-card">
+    <div class="scroll-x">
+    <table class="compare">
+      <tr><th></th><th class="wrap">Question it answers</th><th>Source of truth</th></tr>
+      <tr><td>spec-kit / Kiro</td><td class="wrap">"How do I produce code from intent?"</td><td>The spec</td></tr>
+      <tr><td>This playbook</td><td class="wrap">"How do I keep a codebase trustworthy after thousands of edits?"</td><td>The code</td></tr>
+    </table>
+    </div>
+  </div>
+  <p>Not a competitor — <strong>the reliability layer underneath</strong> whatever generation workflow you use. Use spec-kit to write the feature; use the ledgers, roles, and gates to keep it — and the next ten thousand edits — honest.</p>
+</section>
+
+<section class="entry" id="principles">
+  <span class="folio">02</span>
+  <div class="eyebrow">The philosophy</div>
+  <h2>The fifteen principles</h2>
+  <p class="lede">Everything else on this page is an implementation of one of these lines.</p>
+  <ol class="principles">
+    <li>Instructions live in tiers: global rules, a project map, subsystem extras.</li>
+    <li>Confused → stop and ask. Problem report → diagnose, don't edit.</li>
+    <li>Code answers <em>how</em>; docs answer <em>why</em>.</li>
+    <li>Keep a ledger of killed ideas. A tweak of a dead idea is the same idea.</li>
+    <li>Decisions get one home, a date, and a "revisit if."</li>
+    <li>Report verdict first, metrics vs a named baseline, caveats, recommendation last.</li>
+    <li>Measure what the system actually acts on, not the population.</li>
+    <li>Implementer, reviewer, and auditor are different agents.</li>
+    <li>A claim about code that doesn't trace to a fresh read is labeled "unverified."</li>
+    <li>Memory belongs to the tool; ledgers belong to you.</li>
+    <li>One canonical value per concept; one choke point per external dependency.</li>
+    <li>No silent failures, and raw output for any pass/fail claim.</li>
+    <li>Deterministic core; the LLM narrates at the boundary, never computes alone.</li>
+    <li>Evals are the durable asset; prompts and models are consumables.</li>
+    <li>Start small — instruction file, working rules, the two ledgers — and grow when it hurts.</li>
+  </ol>
+  <p>If fifteen is too many to hold, they collapse into five moves: <strong>ledgers, not memory</strong> · <strong>separate the roles</strong> · <strong>gates on behavior</strong> · <strong>deterministic core</strong> · <strong>grow when it hurts</strong>.</p>
+</section>
+
+<section class="entry" id="kernel">
+  <span class="folio">03</span>
+  <div class="eyebrow">Day one</div>
+  <h2>The minimal kernel</h2>
+  <p class="lede">The smallest thing that counts as "set up" — four files. Resist adding more until absence causes real friction.</p>
+<pre><code>your-repo/
+├── <span class="g">AGENTS.md</span>          <span class="c"># the rules + the project map (canonical, tool-neutral)</span>
+├── <span class="g">CLAUDE.md</span>          <span class="c"># a stub that imports AGENTS.md — Claude Code reads this</span>
+└── docs/
+    ├── <span class="g">decisions.md</span>   <span class="c"># choices made — dated, with "revisit if"</span>
+    └── <span class="g">falsified.md</span>   <span class="c"># ideas killed — mechanism and numbers</span></code></pre>
+  <p>Everything else — roles, hooks, evals, the <code>docs/ai</code> vs <code>docs/plans</code> split — is <em>growth</em>, not kernel. Don't add it on day one.</p>
+  <h3>Two tracks</h3>
+  <p><strong>Code-first</strong> projects add three things immediately: a lockfile-pinned environment, linting, and <strong>one passing test</strong> — so the evidence rule has something to point at from the start. <strong>Docs-first</strong> projects (research, design phases) defer all three until real code arrives.</p>
+  <h3>Greenfield or brownfield — same kernel</h3>
+  <p>New repo: ledgers start empty and grow naturally. Existing repo: ledgers <em>also</em> start empty — and you <strong>fill forward</strong> from your next decision. Never backfill history; that's an archaeology project that never ends. Dropping the kernel into a five-year-old repo changes <strong>no code</strong>.</p>
+</section>
+
+<section class="entry" id="ledgers">
+  <span class="folio">04</span>
+  <div class="eyebrow">The core artifact</div>
+  <h2>The two ledgers</h2>
+  <p class="lede">Memory belongs to the tool; ledgers belong to you. An agent's context window forgets — a committed file does not.</p>
+
+  <h3>falsified.md — the killed-ideas ledger</h3>
+  <p>The piece <strong>no other framework has</strong>. spec-kit, Kiro, and ADR practice all record what you <em>decided</em>. None records what you <em>killed</em> — and that's exactly the memory an agent lacks.</p>
+  <p>Every entry needs the <strong>mechanism</strong> of failure and the <strong>numbers</strong>. "It was slow" invites a re-run; "p99 was 2.3s vs a 400ms budget because each call re-tokenizes the full prompt" tells the next person exactly what would have to change to reopen it. Keep killed entries forever — the ledger's value is that it never forgets.</p>
+  <div class="rule-quote"><span class="tag">The rule that makes it work</span><p>A tweak of a dead idea is the same idea. Resurrection requires new evidence that addresses the recorded mechanism — not a fresh coat of paint.</p></div>
+
+  <h3>decisions.md — the choices ledger</h3>
+  <p>Every deliberate choice gets one home, a date, and a "revisit if" — so ten thousand edits from now, anyone can see what was chosen and when to reconsider.</p>
+<pre><code>## 2026-07-12 — FastAPI over Flask
+<span class="g">Status:</span> accepted            <span class="c"># proposed | accepted | superseded | deprecated</span>
+<span class="g">Because:</span> We need async handling and OpenAPI generation out of the box.
+<span class="g">Rejected Flask because:</span> Sync-first; extra extensions, more moving parts.
+<span class="g">Consequences:</span> Pydantic models everywhere; ties us to Python 3.10+.
+<span class="g">Revisit if:</span> We drop the async requirement.</code></pre>
+  <p>The <code>Status</code>, <code>Consequences</code>, and append-only discipline are borrowed from <a href="https://adr.github.io/madr/">ADR/MADR</a> — fifteen years of prior art for exactly this. Two rules worth stealing: <strong>write imperatively</strong> ("We use Postgres", never "we should probably…"), and <strong>append, don't edit</strong> — a changed mind is a new entry that supersedes the old one, not a rewrite.</p>
+
+  <h3>The docs split</h3>
+  <p>As you grow: <code>docs/ai/</code> holds durable <em>why</em> reasoning, committed forever. <code>docs/plans/</code> holds ephemeral implementation notes, <strong>deleted once the work graduates</strong> — a stale plan is worse than no plan. Code answers <em>how</em>; docs answer <em>why</em>.</p>
+</section>
+
+<section class="entry" id="roles">
+  <span class="folio">05</span>
+  <div class="eyebrow">Separation of powers</div>
+  <h2>The three roles</h2>
+  <p class="lede">A single model that checks its own work is an echo chamber. Splitting the work across separate agents breaks it — a pattern now echoed in <a href="https://code.claude.com/docs/en/best-practices">Anthropic's own best-practices</a> and the documented <a href="https://asdlc.io/patterns/adversarial-code-review/">adversarial code review</a> pattern.</p>
+
+  <div class="flow">
+    <div class="step">
+      <h4>Auditor — vets the idea</h4>
+      <p>Step 0, always: the dead-list check against <code>falsified.md</code>. Then the decisions check. Then, if genuinely new: what's the cheapest test that would kill this if it's wrong? Verdict: <em>already-killed / blocked-by-decision / worth-testing</em>.</p>
+    </div>
+    <div class="joint">│ approved plan ▼</div>
+    <div class="step">
+      <h4>Coder — implements one scoped step</h4>
+      <p>Touches only the named files. No "while I'm here" fixes. Never commits. Stops on ambiguity. Every "it works" claim ships with the command and its raw output.</p>
+    </div>
+    <div class="joint">│ diff only — no reasoning ▼</div>
+    <div class="step">
+      <h4>Reviewer — tries to refute it</h4>
+      <p>Runs in a fresh context. Sees only the diff and the acceptance criteria — <em>not</em> the coder's reasoning. Adversarial by charter, scoped to correctness and requirements.</p>
+      <div class="verdicts"><span class="stamp ok">ship</span><span class="stamp">fix-first</span><span class="stamp" style="border-color:var(--ink-faint);color:var(--ink-faint);">can't-verify</span></div>
+    </div>
+    <div class="joint">│ ▼</div>
+    <div class="step">
+      <h4>The human authors the commit</h4>
+      <p>Always. No agent commits or pushes — that's the edit gate, and it's enforceable (chapter 06).</p>
+    </div>
+  </div>
+
+  <div class="rule-quote warn"><span class="tag">The nuance to get right</span><p>A reviewer told to "find problems" will invent them and drive over-engineering — a documented failure mode. Scope the reviewer to correctness and requirements only, and tell it to say <em>ship</em> plainly when the work is sound. Adversarial, not theatrical.</p></div>
+  <p>You don't need all three for a one-line change — that's principle 15. Reach for the reviewer when a change is non-trivial; reach for the auditor once <code>falsified.md</code> has enough entries that re-runs are a real risk.</p>
+</section>
+
+<section class="entry" id="gates">
+  <span class="folio">06</span>
+  <div class="eyebrow">Behavioral rules</div>
+  <h2>The gates</h2>
+  <p class="lede">Three rules that live at the top of AGENTS.md and counter the two worst habits: guessing when confused, and editing when asked to diagnose.</p>
+
+  <div class="rule-quote"><span class="tag">Ambiguity gate</span><p>Confused or ambiguous? <strong>Stop and ask.</strong> If running unattended, state the ambiguity and which assumption you chose — silent resolution of confusion is never acceptable.</p></div>
+  <div class="rule-quote"><span class="tag">Edit gate</span><p>Questions and problem reports get <strong>diagnosis only</strong> — report findings, change nothing — until the human says <em>fix</em> or <em>implement</em>. Never commit or push. The human authors every commit.</p></div>
+  <div class="rule-quote"><span class="tag">Evidence rule</span><p>A claim about the code that doesn't trace to a <strong>fresh read</strong> is labelled <code>unverified</code>. No silent failures. For any pass/fail claim: the raw output — the command run and what it returned.</p></div>
+
+  <h3>From advice to enforcement</h3>
+  <p>The honest catch: <strong>AGENTS.md is context, not enforcement.</strong> An agent usually follows it; compliance isn't guaranteed. To make a gate a hard constraint, use a <a href="https://code.claude.com/docs/en/hooks">PreToolUse hook</a> — a check that runs before a tool call and can block it. A ten-line script that rejects any <code>git commit</code> or <code>git push</code> from an agent turns "the human authors every commit" from a request into a rule the tooling enforces.</p>
+  <p><strong>Adopt hooks last.</strong> Start with the gates as written rules; add enforcement once the team trusts the discipline. Enforcement added before trust just feels like the tool fighting you.</p>
+</section>
+
+<section class="entry" id="applied">
+  <span class="folio">07</span>
+  <div class="eyebrow">When your product uses an LLM</div>
+  <h2>Applied-AI addendum</h2>
+  <p class="lede">Four extra rules for projects where an LLM runs <em>inside</em> the product — not just beside it.</p>
+  <h3>Deterministic core; LLM at the boundary</h3>
+  <p>Logic with a right answer — pricing, permissions, state transitions — lives in deterministic, testable code. The LLM sits at the edge: it turns messy input into structured calls, and structured results into prose. It never does the arithmetic a function should, <strong>because you can't unit-test a vibe.</strong> When something breaks, you point at a function and a test — not at a prompt and a shrug.</p>
+  <h3>One choke point per model</h3>
+  <p>Route every model call through one client. When you switch models — and you will — you change one file, not fifty.</p>
+  <h3>Evals are the durable asset</h3>
+  <p>Prompts get rewritten; models get deprecated. What lasts is the eval harness. <strong>Grow it from real failures:</strong> don't write a comprehensive suite up front — you'll guess wrong about what breaks. Every time production surprises you, that case joins <code>evals/</code>. The harness grown from actual failures is the one that catches the next one.</p>
+  <h3>Measure what the system acts on</h3>
+  <p>If your agent escalates 5% of tickets, your accuracy number is about <em>that 5%</em> — not the population where "do nothing" is trivially 95% right. Track experiments at the application boundary, where a decision changes behavior — not buried in the engine where the metric flatters you.</p>
+</section>
+
+<section class="entry" id="adoption">
+  <span class="folio">08</span>
+  <div class="eyebrow">Getting started</div>
+  <h2>Adoption &amp; interop</h2>
+
+  <div class="tracks">
+    <div class="track">
+      <h4>Greenfield — new repo</h4>
+      <ol>
+        <li>Copy in the four kernel files.</li>
+        <li>Fill the project map in <code>AGENTS.md</code>: stack, domain terms, how to run tests, the landmines.</li>
+        <li>Code-first? Add a lockfile, linting, one passing test now.</li>
+        <li>Start both ledgers empty.</li>
+        <li>Grow when it hurts: first re-run of a dead idea → start using <code>falsified.md</code>; first untrusted change → bring in the reviewer; first unauthorized commit → add the hook.</li>
+      </ol>
+    </div>
+    <div class="track">
+      <h4>Brownfield — existing repo</h4>
+      <ol>
+        <li>Drop in <code>AGENTS.md</code> + the <code>CLAUDE.md</code> stub. Change <strong>no code</strong>.</li>
+        <li>Fill the project map honestly — especially the landmines.</li>
+        <li>Start both ledgers empty; fill <em>forward</em>. Never backfill.</li>
+        <li>Introduce the reviewer on your next PR. One role, one PR.</li>
+        <li>Add the auditor once <code>falsified.md</code> has entries; adopt hooks last.</li>
+      </ol>
+    </div>
+  </div>
+  <p>No migration, no rewrite, no big bang. If it doesn't help, you've lost four files.</p>
+
+  <h3>Running alongside spec-kit or Kiro</h3>
+  <p>They don't collide: let spec-kit own <code>.specify/</code> and its per-feature specs; let this playbook own <code>AGENTS.md</code> and the two ledgers. A spec-kit <em>constitution</em> states principles up front; <code>decisions.md</code> records choices as you go; <code>falsified.md</code> records what you ruled out — and nothing else offers that last one.</p>
+
+  <h3>AGENTS.md and CLAUDE.md</h3>
+  <p><a href="https://agents.md/"><code>AGENTS.md</code></a> is the canonical, tool-neutral standard (adopted by Codex, Cursor, Amp, and more) — put your real instructions there. <code>CLAUDE.md</code> is a stub importing it via <code>@AGENTS.md</code>, since Claude Code reads its own file. And keep it <strong>under ~200 lines</strong> — past that, agents start ignoring the tail. Add a rule only when you'd otherwise re-explain it.</p>
+</section>
+
+<footer>
+  <p>Structured and expanded from the original <a href="https://gist.github.com/subzekt/0dfced13befee2ff29f1a61bbbd7f072">Project-Setup Playbook for AI-Agent-Assisted Projects</a> by subzekt — refined on a real production system, mostly through mistakes that cost time.</p>
+  <p>The clone-and-run starter kit — kernel files, role prompts, templates, and the full research analysis comparing this playbook to spec-kit, Kiro, AGENTS.md, and ADR practice — lives in the companion repository. MIT licensed.</p>
+</footer>
+
+</div>
