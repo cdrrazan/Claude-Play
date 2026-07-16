@@ -71,6 +71,7 @@ flowchart LR
 ├── roles/                 # ready-to-paste prompts: coder · reviewer · auditor
 ├── templates/             # copy-paste ledger entries, decision record, spec stub
 ├── evals/                 # eval-harness scaffold (for LLM projects)
+├── examples/              # filled-in greenfield + brownfield walkthroughs
 └── .claude/hooks/         # OPTIONAL hooks that turn the gates into enforcement
 ```
 
@@ -116,6 +117,17 @@ Keel's whole philosophy collapses into five:
 </table>
 
 No big-bang migration. Everything here is additive.
+
+## See it filled in
+
+Two worked examples in [`examples/`](examples/) show the ledgers, `AGENTS.md`, and roles carrying real
+content — the fastest way to make the idea click:
+
+- **[greenfield-linkli](examples/greenfield-linkli/)** — a new API adopting Keel from day one, including a
+  decision that was **proposed, reviewed, and superseded** — the
+  [proposed-vs-ratified](docs/guide/04-ledgers.md#who-owns-an-entry-proposed-vs-ratified) boundary in action.
+- **[brownfield-billing](examples/brownfield-billing/)** — Keel retrofitted onto a legacy Django service:
+  fill-*forward* (never backfill), a landmine-heavy project map, roles adopted one at a time.
 
 ## The three roles
 
