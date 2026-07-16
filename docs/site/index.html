@@ -495,6 +495,9 @@
 <span class="g">Revisit if:</span> We drop the async requirement.</code></pre>
   <p>The <code>Status</code>, <code>Consequences</code>, and append-only discipline are borrowed from <a href="https://adr.github.io/madr/">ADR/MADR</a> — fifteen years of prior art for exactly this. Two rules worth stealing: <strong>write imperatively</strong> ("We use Postgres", never "we should probably…"), and <strong>append, don't edit</strong> — a changed mind is a new entry that supersedes the old one, not a rewrite.</p>
 
+  <h3>Proposed vs. ratified</h3>
+  <p>An entry an agent drafts starts <code>Status: proposed</code> — a <em>claim</em>, not a record; by the evidence rule it carries no authority until the <strong>commit ratifies it</strong> (the human authors every commit). When a reviewer keeps the code but <strong>rejects the reasoning</strong>, the author supersedes the proposed entry with a one-line reason — a rejected "why" is <strong>superseded explicitly, never left for the next agent to infer</strong>. In a long-lived, agent-heavy repo a stale <em>why</em> is more dangerous than stale code: code is falsifiable, an orphaned rationale just misleads. If the idea itself was disproven, it also earns a row in <code>falsified.md</code>.</p>
+
   <h3>The docs split</h3>
   <p>As you grow: <code>docs/ai/</code> holds durable <em>why</em> reasoning, committed forever. <code>docs/plans/</code> holds ephemeral implementation notes, <strong>deleted once the work graduates</strong> — a stale plan is worse than no plan. Code answers <em>how</em>; docs answer <em>why</em>.</p>
 </section>

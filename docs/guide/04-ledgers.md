@@ -54,6 +54,37 @@ enough. Start light; grow when it hurts.
 
 See the live file: [`docs/decisions.md`](../decisions.md).
 
+## Who owns an entry: proposed vs. ratified
+
+A ledger entry has two lives. When an agent drafts one alongside a change, it is **`Status: proposed`** —
+a *claim*, not a record. By the evidence rule, an unverified claim carries no authority. What ratifies it
+is the **commit**: because the human authors every commit (the edit gate), whoever lands the change owns
+the authoritative entry.
+
+This matters most when a reviewer keeps some of the code but **rejects the reasoning**. Two things you
+must *not* do: leave the rejected "why" sitting as authoritative, or make the next agent *infer* from the
+diff and the review comments that it is stale. Inference about intent is exactly what the evidence rule
+forbids, and review threads are not the source of truth — they are ephemeral and live outside the
+committed ledger. Instead, at commit the author writes the entry that reflects what actually landed and
+marks the old one `Status: superseded` with a one-line reason. The ledger is append-only, so the dead
+rationale stays in history while the authoritative pointer moves forward. **A rejected "why" is
+superseded explicitly — never inferred.**
+
+A rejected rationale has two possible destinations, one per ledger:
+
+- the **decision** changed ("we now do X instead") → supersede the entry in `decisions.md`;
+- an **idea was disproven** ("approach Y does not work, because *mechanism + numbers*") → a new row in
+  `falsified.md`, so no agent retries it.
+
+If you relax the human-in-the-loop assumption and let agents commit, the ratifier shifts from the human
+to the **reviewer role**: a `fix-first` verdict produces the superseding entry as its output, and the
+auditor's step-0 dead-list check then reads the current authoritative entry, never a superseded draft.
+
+> **Why this is the hard part.** In a long-lived, agent-heavy repo a stale *why* is more dangerous than
+> stale code — code is falsifiable, but an orphaned rationale simply misleads. Keel's answer is to make
+> staleness impossible to be *silent*: supersession is a dated, written event tied to the commit, not
+> something a future reader has to reconstruct.
+
 ## The `docs/ai` vs. `docs/plans` split
 
 Two more folders that appear as you grow (not kernel):

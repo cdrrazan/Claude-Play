@@ -20,6 +20,12 @@ Keep entries **imperative and specific** — "We use Postgres", not "We should p
 a decision is accepted, don't rewrite it; add a **new** entry that supersedes it and mark the old one
 `Status: superseded`. The ledger is append-only history, not a live document.
 
+**Proposed vs. ratified.** An entry an agent drafts starts `Status: proposed` — a claim, not a record.
+The **commit ratifies it** (the human authors every commit), promoting it to `accepted`. If a reviewer
+keeps the code but rejects the reasoning, the author supersedes the proposed entry rather than letting a
+rejected "why" stand. Full rationale in the guide:
+[Who owns an entry](guide/04-ledgers.md#who-owns-an-entry-proposed-vs-ratified).
+
 ---
 
 <!--
@@ -47,3 +53,10 @@ Because: docs/site/index.html with zero external dependencies (no fonts, scripts
 Rejected a static-site generator because: A build step, a theme, and a dependency tree are permanent maintenance for a single page.
 Consequences: Styling is hand-maintained in one <style> block; contributors edit HTML directly.
 Revisit if: The guide grows past one page or needs search/navigation a single document can't carry.
+
+## 2026-07-16 — Ledger entries are proposed until ratified by the commit
+Status: accepted
+Because: In agent-heavy repos a stale "why" is more dangerous than stale code, so entries need a single ratification point and an explicit supersede path — a rejected rationale must never stay authoritative. Raised in issue #1.
+Rejected letting the next agent infer staleness from the diff + review comments because: Inference about intent violates the evidence rule, and review threads live outside the committed ledger — the source of truth would leak into ephemeral PR discussion.
+Consequences: Agent-drafted entries start Status: proposed; the committing party owns the authoritative entry; partial-accept supersedes explicitly. Documented in guide ch. 4.
+Revisit if: A future workflow makes review threads first-class committed artifacts that agents can treat as authoritative.
