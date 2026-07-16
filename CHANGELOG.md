@@ -14,8 +14,7 @@ All notable changes to Keel are recorded here. The format follows
 - **Worked examples** under `examples/` — a greenfield (`linkli`) and a brownfield (`billing`) scenario
   with filled-in `AGENTS.md` and ledgers, so the model is easy to grasp from real content.
 - **Ledger chapter:** a "Who owns an entry: proposed vs. ratified" section codifying that agent-drafted
-  entries are proposed claims ratified at commit, and that a rejected rationale is superseded explicitly
-  (from [#1](https://github.com/cdrrazan/Keel/issues/1)).
+  entries are proposed claims ratified at commit, and that a rejected rationale is superseded explicitly.
 
 ### Changed
 - Standardized the project name to **Keel** across the guide, README, web guide, and templates.

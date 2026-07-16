@@ -56,7 +56,7 @@ Revisit if: The guide grows past one page or needs search/navigation a single do
 
 ## 2026-07-16 — Ledger entries are proposed until ratified by the commit
 Status: accepted
-Because: In agent-heavy repos a stale "why" is more dangerous than stale code, so entries need a single ratification point and an explicit supersede path — a rejected rationale must never stay authoritative. Raised in issue #1.
+Because: In agent-heavy repos a stale "why" is more dangerous than stale code, so entries need a single ratification point and an explicit supersede path — a rejected rationale must never stay authoritative.
 Rejected letting the next agent infer staleness from the diff + review comments because: Inference about intent violates the evidence rule, and review threads live outside the committed ledger — the source of truth would leak into ephemeral PR discussion.
 Consequences: Agent-drafted entries start Status: proposed; the committing party owns the authoritative entry; partial-accept supersedes explicitly. Documented in guide ch. 4.
 Revisit if: A future workflow makes review threads first-class committed artifacts that agents can treat as authoritative.
