@@ -87,9 +87,11 @@ ship as a clone-and-run starter template whose README is the guide.
   [[agents.md]](https://agents.md/) · [[repo]](https://github.com/agentsmd/agents.md)
 - **CLAUDE.md** is Anthropic's canonical persistent-context file — loaded every session, checked into
   git, holding bash commands, code style, workflow rules, architectural decisions. Claude Code reads
-  *CLAUDE.md, not AGENTS.md*; the recommended interop pattern is a `CLAUDE.md` that imports `@AGENTS.md`
-  (or a symlink). As of a still-open community request (Aug 2025), Claude Code had no native AGENTS.md
-  support. [[memory docs]](https://code.claude.com/docs/en/memory) · [[issue #6235]](https://github.com/anthropics/claude-code/issues/6235)
+  *CLAUDE.md, not AGENTS.md*; the interop pattern is a `CLAUDE.md` that imports `@AGENTS.md`
+  (or a symlink) — as of mid-2026 that pattern is *officially documented* in Anthropic's memory docs,
+  with Claude-specific notes allowed below the import. The community request for native AGENTS.md
+  support remains open (opened Aug 2025; still open as of Jul 2026).
+  [[memory docs]](https://code.claude.com/docs/en/memory) · [[issue #6235]](https://github.com/anthropics/claude-code/issues/6235)
 - **Two facts that directly shape the guidebook:**
   1. **These files are *context, not enforcement*.** Compliance is not guaranteed; to *hard-block* an
      action you need a **PreToolUse hook**, not a line in CLAUDE.md. The playbook's gates are behavioral
