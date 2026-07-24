@@ -55,14 +55,14 @@ Consequences: Styling is hand-maintained in one <style> block; contributors edit
 Revisit if: The guide grows past one page or needs search/navigation a single document can't carry.
 
 ## 2026-07-24 — Ship the enforcement hook as example files, not an active settings.json
-Status: proposed
+Status: accepted
 Because: The guide promised a hook example in `.claude/hooks/` but the repo only described it in prose; shipping `block-agent-commits.sh` + `settings.example.json` makes the claim real, and CI now proves the behavior (`.github/scripts/test_hook.sh`) per the evidence rule.
 Rejected shipping an active `.claude/settings.json` because: It would silently enforce the edit gate on anyone who clones Keel itself — enforcement must be opted into explicitly ("adopt hooks last"), and it would block Keel's own maintenance sessions.
 Consequences: Adopters copy two files and merge the snippet into their own settings; the hook script must stay in sync with the Claude Code hook interface (checked against current docs, 2026-07).
 Revisit if: Claude Code's hook interface changes, or adopters report the copy-and-merge step as real friction.
 
 ## 2026-07-24 — Root AGENTS.md is filled in for Keel; the blank starter moves to templates/
-Status: proposed
+Status: accepted
 Because: The root file carried unfilled bracketed placeholders, so agents working *on Keel* read "[one-line description of the project]" — a dogfooding failure in the repo's most-read file. Filling it makes it both real instructions and a live example.
 Rejected keeping the root file blank because: A repo that preaches "fill the project map" while shipping its own unfilled contradicts itself; adopters still get a clean starter at `templates/AGENTS.md`.
 Consequences: README/guide copy instructions point at `templates/AGENTS.md`; the root file and the template can drift and must be reconciled deliberately.
