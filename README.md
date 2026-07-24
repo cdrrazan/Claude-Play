@@ -72,7 +72,7 @@ flowchart LR
 ├── templates/             # copy-paste ledger entries, decision record, spec stub
 ├── evals/                 # eval-harness scaffold (for LLM projects)
 ├── examples/              # filled-in greenfield + brownfield walkthroughs
-└── .claude/hooks/         # OPTIONAL hooks that turn the gates into enforcement
+└── .claude/hooks/         # OPTIONAL enforcement: shipped PreToolUse hook + settings example
 ```
 
 ## The five moves
@@ -116,7 +116,9 @@ Keel's whole philosophy collapses into five:
 </tr>
 </table>
 
-No big-bang migration. Everything here is additive.
+No big-bang migration. Everything here is additive. And the `CLAUDE.md` → `@AGENTS.md` stub isn't a
+workaround: it's the interop pattern [Anthropic's own memory docs](https://code.claude.com/docs/en/memory)
+recommend, so Claude Code and every AGENTS.md-native tool (Codex, Cursor, Amp, …) read the same rules.
 
 ## See it filled in
 

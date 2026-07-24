@@ -11,6 +11,10 @@ All notable changes to Keel are recorded here. The format follows
 ## [Unreleased]
 
 ### Added
+- **The enforcement hook is now actually shipped:** `.claude/hooks/block-agent-commits.sh` (denies
+  agent `git commit`/`git push` via the `hookSpecificOutput`/`permissionDecision` interface current
+  Claude Code hook docs recommend) plus `settings.example.json` to register it. Previously the hook
+  was only described in prose.
 - **Worked examples** under `examples/` — a greenfield (`linkli`) and a brownfield (`billing`) scenario
   with filled-in `AGENTS.md` and ledgers, so the model is easy to grasp from real content.
 - **Ledger chapter:** a "Who owns an entry: proposed vs. ratified" section codifying that agent-drafted
@@ -18,6 +22,10 @@ All notable changes to Keel are recorded here. The format follows
 
 ### Changed
 - Standardized the project name to **Keel** across the guide, README, web guide, and templates.
+- **Refreshed Anthropic references** (verified 2026-07): the `CLAUDE.md` → `@AGENTS.md` import stub is
+  now the interop pattern officially documented in Anthropic's memory docs, not just a community
+  workaround — noted in the README, adoption chapter, research analysis, and web guide. Native
+  AGENTS.md support (anthropics/claude-code#6235) remains open.
 
 ## [0.1.0] — 2026-07-15
 
