@@ -69,7 +69,7 @@ flowchart LR
 │   ├── plans/             # ephemeral implementation notes (deleted after use)
 │   └── guide/             # the full guidebook, chapter by chapter
 ├── roles/                 # ready-to-paste prompts: coder · reviewer · auditor
-├── templates/             # copy-paste ledger entries, decision record, spec stub
+├── templates/             # blank AGENTS.md, ledger entries, decision record, spec stub
 ├── evals/                 # eval-harness scaffold (for LLM projects)
 ├── examples/              # filled-in greenfield + brownfield walkthroughs
 └── .claude/hooks/         # OPTIONAL enforcement: shipped PreToolUse hook + settings example
@@ -97,7 +97,7 @@ Keel's whole philosophy collapses into five:
 <tr>
 <td valign="top">
 
-1. Copy `AGENTS.md`, `CLAUDE.md`, and the two ledgers into your repo.
+1. Copy [`templates/AGENTS.md`](templates/AGENTS.md) (as `AGENTS.md`), `CLAUDE.md`, and the two ledgers into your repo.
 2. Fill in the *project map* in `AGENTS.md` (stack, domain terms, how to run tests).
 3. Start both ledgers **empty**. Add as you go — never backfill.
 4. Add linting, a lockfile, and one passing test **now** if it's a code project.
@@ -167,7 +167,8 @@ or read it chapter by chapter here:
 
 ## Contributing
 
-Keel eats its own dog food: decisions about it live in [`docs/decisions.md`](docs/decisions.md),
+Keel eats its own dog food: its root [`AGENTS.md`](AGENTS.md) is filled in for this repo (the blank
+starter lives in [`templates/`](templates/)), decisions about it live in [`docs/decisions.md`](docs/decisions.md),
 proposals carry the burden of proof, and additions need a demonstrated friction they resolve — Keel's
 value is its smallness. Start with [CONTRIBUTING.md](CONTRIBUTING.md); the most valuable thing you can
 send is an [experience report](.github/ISSUE_TEMPLATE/experience-report.md) from actually adopting it.

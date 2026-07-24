@@ -4,8 +4,7 @@ This is the canonical instruction file for agents working in this repo. It is to
 reads `CLAUDE.md`, which imports this file. Keep this file **short** — if it grows past ~200 lines, agents
 start ignoring the tail. Add a rule only when you'd otherwise re-explain it.
 
-> This file is filled in for **Keel itself** — the repo eats its own dog food. The blank starter
-> template to copy into *your* project is [`templates/AGENTS.md`](templates/AGENTS.md).
+> Replace the bracketed placeholders below with your project's real details, then delete this line.
 
 ---
 
@@ -23,23 +22,13 @@ what it returned — not a summary that says "it works."
 
 ## Project map
 
-- **What this is:** Keel — a copy-pasteable discipline kit (prose, templates, role prompts, one hook)
-  that keeps codebases trustworthy under heavy AI-agent editing. No application code.
-- **Stack:** Markdown; one self-contained HTML page (`docs/site/index.html`); bash + Python helper
-  scripts; GitHub Actions CI; GitHub Pages deploy.
-- **How to run it:** nothing runs — the deliverable is the files. The web guide is
-  `docs/site/index.html` (open in a browser; deployed to keel.byaru.com on push to main).
-- **How to run tests:** `python3 .github/scripts/check_links.py` (link integrity),
-  `bash .github/scripts/test_hook.sh` (hook behavior), and `wc -l AGENTS.md` ≤ 200 — a claim that
-  checks pass must include the raw output.
-- **How to lint/format:** no linter; match surrounding prose style and ~110-column wrapping.
-- **Domain terms:** kernel = the four starter files; ledgers = `decisions.md` + `falsified.md`;
-  gates = the three rules above; roles = coder/reviewer/auditor; proposed vs. ratified = agent-drafted
-  ledger entries carry no authority until a human commit promotes them.
-- **Landmines:** `docs/site/index.html` mirrors `docs/guide/` **by hand** — a content change usually
-  needs both. `docs/site/CNAME` must not be deleted. This file doubles as the live example of itself —
-  the blank template adopters copy is `templates/AGENTS.md`, and `templates/` + `examples/` are
-  user-facing copy material. CI hard-fails if this file exceeds 200 lines.
+- **What this is:** [one-line description of the project]
+- **Stack:** [languages, frameworks, key libraries]
+- **How to run it:** [command]
+- **How to run tests:** [command] — a claim that tests pass must include this command's raw output.
+- **How to lint/format:** [command]
+- **Domain terms:** [term = meaning; term = meaning] — the words that mean something specific here.
+- **Landmines:** [things that look editable but aren't; generated files; external contracts]
 
 ## Working rules
 

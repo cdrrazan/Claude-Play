@@ -14,7 +14,10 @@ All notable changes to Keel are recorded here. The format follows
 - **The enforcement hook is now actually shipped:** `.claude/hooks/block-agent-commits.sh` (denies
   agent `git commit`/`git push` via the `hookSpecificOutput`/`permissionDecision` interface current
   Claude Code hook docs recommend) plus `settings.example.json` to register it. Previously the hook
-  was only described in prose.
+  was only described in prose. CI now proves the hook's behavior on every push
+  (`.github/scripts/test_hook.sh`) — the evidence rule, applied to Keel's own claims.
+- **`templates/AGENTS.md`** — the blank starter template. Keel's root `AGENTS.md` is now filled in
+  for this repo itself (dogfooding); README and adoption guide point adopters at the template.
 - **Worked examples** under `examples/` — a greenfield (`linkli`) and a brownfield (`billing`) scenario
   with filled-in `AGENTS.md` and ledgers, so the model is easy to grasp from real content.
 - **Ledger chapter:** a "Who owns an entry: proposed vs. ratified" section codifying that agent-drafted

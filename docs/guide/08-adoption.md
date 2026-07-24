@@ -4,7 +4,8 @@ Two walkthroughs, then how to run this alongside spec-kit or Kiro.
 
 ## Greenfield walkthrough
 
-1. **Clone Keel** (or copy the four kernel files into your new repo).
+1. **Clone Keel** (or copy the four kernel files into your new repo — the blank `AGENTS.md` starter is
+   [`templates/AGENTS.md`](../../templates/AGENTS.md); the root one is filled in for Keel itself, a live example).
 2. **Strip to the kernel** — delete anything you're not using yet. `AGENTS.md`, `CLAUDE.md`,
    `docs/decisions.md`, `docs/falsified.md`. That's the starting line.
 3. **Fill the project map** in `AGENTS.md`: stack, domain terms, how to run tests, the landmines.

@@ -14,6 +14,14 @@ jobs:
       - name: Check relative links in Markdown
         run: python3 .github/scripts/check_links.py
 
+  hook-example:
+    name: Enforcement hook behaves
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test .claude/hooks/block-agent-commits.sh
+        run: bash .github/scripts/test_hook.sh
+
   agents-md-size:
     name: AGENTS.md stays short
     runs-on: ubuntu-latest
