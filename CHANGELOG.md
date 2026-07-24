@@ -20,6 +20,8 @@ All notable changes to Keel are recorded here. The format follows
   for this repo itself (dogfooding); README and adoption guide point adopters at the template.
 - **Worked examples** under `examples/` — a greenfield (`linkli`) and a brownfield (`billing`) scenario
   with filled-in `AGENTS.md` and ledgers, so the model is easy to grasp from real content.
+- **ELI5 explainer** — a "five-year-old version" of the pitch (robots, LEGO, two notebooks) in the
+  README, guide chapter 1, and the web guide.
 - **Ledger chapter:** a "Who owns an entry: proposed vs. ratified" section codifying that agent-drafted
   entries are proposed claims ratified at commit, and that a rejected rationale is superseded explicitly.
 

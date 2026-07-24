@@ -45,4 +45,17 @@ So this is **not a competitor** to spec-kit or Kiro — it's the reliability lay
 whatever generation workflow you use. Use spec-kit to write the feature; use the ledgers, roles, and gates
 here to make sure that feature — and the next ten thousand agent edits after it — stays honest.
 
+## The five-year-old version
+
+Imagine robot helpers building a LEGO castle with you. They build *really* fast, but: they **forget**
+(yesterday the thin-piece drawbridge fell off; today a robot tries thin pieces again), they **do too
+much** (asked to fix a window, one rebuilds two towers you liked), and they **fib without meaning to**
+("the castle is sturdy!" — without ever wiggling it).
+
+Keel is the **house rules taped to the wall**: two notebooks — what we *decided* and what we *tried and
+it broke* — so nobody builds the thin drawbridge twice; three jobs for three robots — one builds, one
+checks the work without hearing the builder's excuses, one checks the notebooks before anyone starts —
+so nobody grades their own homework; and simple rules — confused? stop and ask; say "it's sturdy"? show
+the wiggle test. And **only the human glues**: robots suggest, you make it permanent.
+
 → Next: [The 15 principles](02-principles.md)

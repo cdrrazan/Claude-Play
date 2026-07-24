@@ -56,6 +56,32 @@ flowchart LR
 > playbook into a usable, copy-pasteable kit. See [`docs/research/playbook-analysis.md`](docs/research/playbook-analysis.md)
 > for how it compares to spec-kit, Kiro, AGENTS.md, and ADR practice.
 
+<details>
+<summary><strong>🧒 ELI5 — the five-year-old version</strong> (robots, LEGO, and two notebooks)</summary>
+<br>
+
+Imagine robot helpers building a LEGO castle with you. They build *really* fast, but they have three
+bad habits: they **forget** (yesterday you all learned the drawbridge falls off if you use the thin
+pieces — today a robot tries thin pieces again), they **do too much** (asked to fix a window, one
+rebuilds two towers you liked just fine), and they **fib without meaning to** ("the castle is sturdy!"
+— without ever wiggling it to check).
+
+**Keel is the house rules taped to the wall**, and every robot reads them before touching anything:
+
+- 📒 **Two notebooks.** One lists what we *decided* ("the moat goes on the left"). One lists what we
+  *tried and it broke* — so nobody builds the thin drawbridge ever again.
+- 👷 **Three jobs, three robots.** One builds. A different one checks the work — and doesn't get to
+  hear the builder's excuses. A third checks the notebooks *before* anyone starts. Nobody grades
+  their own homework.
+- 🛑 **Simple rules.** Confused? Stop and ask. Asked a question? Answer it — don't grab bricks. Say
+  "it's sturdy"? Show the wiggle test.
+- 👤 **Only the human glues.** Robots suggest; you make it permanent.
+
+Not a robot, not a castle — just the rules, the notebooks, and the job descriptions you copy into any
+project so the robots stay fast **and** the castle stays standing.
+
+</details>
+
 ## What you get
 
 ```

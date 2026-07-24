@@ -1,7 +1,7 @@
 # Examples
 
-Two worked examples of Keel **filled in** — not blank templates (the files at the repo root are those),
-but realistic snapshots of what the ledgers, `AGENTS.md`, and roles look like after a few weeks of real
+Two worked examples of Keel **filled in** — not blank templates (those live in [`templates/`](../templates/);
+the repo-root `AGENTS.md` is filled in for Keel itself), but realistic snapshots of what the ledgers, `AGENTS.md`, and roles look like after a few weeks of real
 use. Read the `README.md` in each folder first; it narrates the story the files tell.
 
 | Example | Scenario | Shows |
